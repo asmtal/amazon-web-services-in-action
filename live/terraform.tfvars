@@ -13,10 +13,28 @@ terragrunt = {
   
   // NOTE: Lock blocks are not supported by Terragrunt anymore.
 
+  # This is the remote_state template. terraform.tfvars files in subdirectories should include
+  # an "include" with a parent folders path. This will go up the directory path and use the
+  # first terraform.tfvars it finds, which should be this one.
+  #
+  #   include {
+  #     path = "${find_in_parent_folders()}"
+  #   }
+  #
+  # The modules should have a backend configuration, which will be replaced by Terragrunt with 
+  # this template.
+  #
+  #   terraform {
+  #     backend "s3" {}
+  #   }
+  #
   remote_state {
     backend = "s3"
     config {
       profile = "lipscomb"
+      
+      # unfortunately, this cannot be interpolated, so must be hard-coded. The same value will be hard-coded in this
+      # file and the sibling common.tfvars file.
       region = "us-east-1"
       
       # Terraform stores all variables in its state files in plain text, including

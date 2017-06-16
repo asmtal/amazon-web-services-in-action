@@ -1,6 +1,6 @@
 terragrunt = {
   terraform {
-    source = "../../../modules/stacks/wordpress"
+    source = "../../../../modules/service/webserver"
 
     extra_arguments "custom_vars" {
       commands = [
@@ -22,6 +22,9 @@ terragrunt = {
         "-var-file=terraform.tfvars"
       ]
     }
+
+
+
   }
 
   # This looks for terraform.tfvars in its parent folders. It uses the first one it finds. Since
