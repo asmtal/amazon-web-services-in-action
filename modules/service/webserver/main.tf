@@ -4,11 +4,12 @@ terraform {
 }
 
 resource "aws_instance" "webserver" {
-  ami           = "ami-80861296"
+  # these are dependent on region
+  ami           = "${var.instance_ami}"
   instance_type = "t2.micro"
 
-  key_name="dave-lipscomb-key"
-  
+  #key_name="dave-lipscomb-key"
+
   tags {
     Name = "HelloWorld"
   }
@@ -16,5 +17,5 @@ resource "aws_instance" "webserver" {
 
 provider "aws" {
   profile = "lipscomb"
-  region = "${var.region}"
+  region  = "${var.region}"
 }

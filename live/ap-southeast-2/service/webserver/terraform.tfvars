@@ -27,9 +27,11 @@ terragrunt = {
 
   }
 
-  # This looks for terraform.tfvars in its parent folders. It uses the first one it finds. Since
+  # This looks for terraform.tfvarsblah in its parent folders. It uses the first one it finds. Since
   # we store state info in the root, this allows us to DRY state.
   include {
     path = "${find_in_parent_folders()}"
   }
 }
+
+instance_ami = "ami-96666ff5"

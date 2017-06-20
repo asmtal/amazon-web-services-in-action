@@ -5,7 +5,7 @@ terraform {
 
 provider "aws" {
   profile = "lipscomb"
-  region = "${var.region}"
+  region  = "${var.region}"
 }
 
 resource "aws_cloudformation_stack" "wordpress_stack" {
